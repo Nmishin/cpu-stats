@@ -1,0 +1,24 @@
+name: pipeline
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/**'
+
+permissions:
+    contents: write
+    packages: write
+
+jobs:
+  release-linux-amd64:
+    name: release linux/amd64
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: wangyoucao577/go-release-action@v1.40
+      with:
+        github_token: ${{ secrets.TOKEN }}
+        goos: linux
+        goarch: amd64
+        binary_name: cpu-stats-exporter-x64
