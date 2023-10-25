@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
       - name: Set application version
         id: set_version
-        uses: kvendingoldo/semver-action@v1.10
+        uses: kvendingoldo/semver-action@v1.18
         with:
           primary_branch: 'main'
           enable_github_releases: true
