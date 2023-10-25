@@ -11,9 +11,21 @@ permissions:
     packages: write
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set_version.outputs.safe_version }}
+    steps:
+      - name: Set application version
+        id: set_version
+        uses: kvendingoldo/semver-action@v1.10
+        with:
+          primary_branch: 'main'
+
   release-linux-amd64:
     name: release linux/amd64
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - uses: actions/checkout@v3
     - uses: wangyoucao577/go-release-action@v1.40
@@ -21,4 +33,5 @@ jobs:
         github_token: ${{ secrets.TOKEN }}
         goos: linux
         goarch: amd64
-        binary_name: cpu-stats-exporter-x64
+        asset_name: cpu-stats-exporter-x64-${{ needs.build.outputs.version }}§
+        release_tag: ${{ needs.build.outputs.version }}
