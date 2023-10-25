@@ -36,5 +36,4 @@ jobs:
         github_token: ${{ secrets.TOKEN }}
         goos: linux
         goarch: amd64
-        asset_name: cpu-stats-exporter-x64-${{ needs.build.outputs.version }}§
-        release_tag: ${{ needs.build.outputs.version }}
+        asset_name: cpu-stats-exporter-x64
