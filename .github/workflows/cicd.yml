@@ -37,3 +37,4 @@ jobs:
         goos: linux
         goarch: amd64
         asset_name: cpu-stats-exporter-x64
+        release_tag: ${{ echo needs.build.outputs.version | tr - /}}        
