@@ -25,6 +25,7 @@ jobs:
         with:
           primary_branch: 'main'
           enable_github_releases: true
+          init_version: rc/0.4.0
 
   release-linux-amd64:
     name: release linux/amd64
