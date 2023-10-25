@@ -26,4 +26,3 @@ jobs:
           primary_branch: 'main'
           enable_github_releases: true
           init_version: rc/0.4.0
-          release_tag_prefix: "v"
