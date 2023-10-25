@@ -43,4 +43,5 @@ jobs:
         goos: linux
         goarch: amd64
         asset_name: cpu-stats-exporter-x64
+        release_name: cpu-stats-exporter-x64
         release_tag: ${{ steps.rewrite_tag.outputs.version }}
