@@ -30,6 +30,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: rewrite tag
+      id: rewrite_tag
+      run: |
+        version=$(echo ${{ needs.build.outputs.version }} | tr - /)
+        echo "version=${version}" >> $GITHUB_OUTPUT
     - uses: actions/checkout@v3
     - uses: wangyoucao577/go-release-action@v1.40
       with:
@@ -37,4 +42,4 @@ jobs:
         goos: linux
         goarch: amd64
         asset_name: cpu-stats-exporter-x64
-        release_tag: ${{ echo needs.build.outputs.version | tr - /}}        
+        release_tag: ${{ steps.rewrite_tag.outputs.version }}
