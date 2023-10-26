@@ -7,8 +7,21 @@ on:
       - 'release/**'
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set_version.outputs.safe_version }}
+    steps:
+      - name: Set application version
+        id: set_version
+        uses: kvendingoldo/semver-action@v1.18
+        with:
+          primary_branch: 'main'
+          init_version: rc/0.7.0
+
   goreleaser:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v4
