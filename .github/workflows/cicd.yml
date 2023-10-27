@@ -24,7 +24,6 @@ jobs:
         uses: kvendingoldo/semver-action@v1.18
         with:
           primary_branch: 'main'
-          init_version: rc/0.7.0
 
   goreleaser:
     runs-on: ubuntu-latest
